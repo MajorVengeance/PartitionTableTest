@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartitionTableTest", "PartitionTableTest\PartitionTableTest.csproj", "{86067C56-7B61-48C7-913E-0ED9A9ACE265}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartionTableTest.Console", "PartionTableTest.Console\PartionTableTest.Console.csproj", "{7802D2C6-1C28-47FE-A288-2FD34F013D81}"
+	ProjectSection(ProjectDependencies) = postProject
+		{86067C56-7B61-48C7-913E-0ED9A9ACE265} = {86067C56-7B61-48C7-913E-0ED9A9ACE265}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86067C56-7B61-48C7-913E-0ED9A9ACE265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86067C56-7B61-48C7-913E-0ED9A9ACE265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86067C56-7B61-48C7-913E-0ED9A9ACE265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86067C56-7B61-48C7-913E-0ED9A9ACE265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7802D2C6-1C28-47FE-A288-2FD34F013D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7802D2C6-1C28-47FE-A288-2FD34F013D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7802D2C6-1C28-47FE-A288-2FD34F013D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7802D2C6-1C28-47FE-A288-2FD34F013D81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90E07252-371F-4647-BDF4-FC7040B87141}
+	EndGlobalSection
+EndGlobal
