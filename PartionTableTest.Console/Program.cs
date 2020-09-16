@@ -17,19 +17,28 @@ namespace PartionTableTest.Console
                 DataRangeKeyExpression = ph => new { ph.Year, ph.Month },
                 PrimaryKeyExpression = ph => new { ph.Id, ph.Year, ph.Month },
             };
+            var adapterFactory = new PartitionedViewAdapterFactory();
+            var adapter = adapterFactory.Create(config);
 
-            var adapter = new PartitionedViewAdapterFactory().Create(config);
             adapter.View.Add(new PokerHand
             {
                 Action = "Fold",
-                Amount = 100.00,
-                Id = 1,
-                Month = 2,
-                PlayerName = "Joe Bloggs",
-                PokerSiteHandId = "12",
-                Year = 2020
+                Amount = 2000.00,
+                Id = 2,
+                Month = 10,
+                PlayerName = "Kevin Smith",
+                PokerSiteHandId = "142",
+                Year = 2019
             });
             adapter.SaveChanges();
+
+            // Recreate the adapter (view) so we get the new DB
+            adapter = adapterFactory.Create(config);
+
+            var viewList = adapter.View.ToList();
+
+            viewList.ForEach(a => System.Console.WriteLine($"PlayerName: {a.PlayerName}; Action: {a.Action}; Id: {a.Id}; Year: {a.Year}; Month: {a.Month}; Amount: {a.Month}"));
+            System.Console.Read();
         }
     }
 }

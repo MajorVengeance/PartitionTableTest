@@ -43,16 +43,31 @@ namespace PartitionTableTest.Data
             foreach(var o in ChangeTracker.Entries<T>().Where(e => e.State != EntityState.Unchanged))
             {
                 var dataRangeKey = GetDataRangeKey(o.Entity);
-                var memberTable = memberTables.Single(mt => mt.DataRangeKey == dataRangeKey);
-                var copy = CloneTo(o.Entity, memberTable.DataType);
-                memberTable.DbContext.Entry(copy).State = o.State;
-                objectsWritten += memberTable.DbContext.SaveChanges();
-                Copy(memberTable.DbContext.Entry(copy).Entity as T, o.Entity);
 
-                if (o.State == EntityState.Deleted)
-                    o.State = EntityState.Detached;
-                else
-                    o.State = EntityState.Unchanged;
+                // Check to see if the table "exists" in our model
+                if (!memberTables.Any(mt => mt.DataRangeKey == dataRangeKey))
+                {
+                    var newTable = MemberTableFactory.Create(dataRangeKey);
+                    newTable.DbContext.Database.Initialize(true);
+                    // Add the table
+                    this.memberTables.Add(newTable);
+
+                    //Recreate View (I hope)
+                    CreateView();
+                }
+
+                var memberTable = memberTables.Single(mt => mt.DataRangeKey == dataRangeKey);
+
+                var copy = CloneTo(o.Entity, memberTable.DataType);
+                    memberTable.DbContext.Entry(copy).State = o.State;
+                    objectsWritten += memberTable.DbContext.SaveChanges();
+                    Copy(memberTable.DbContext.Entry(copy).Entity as T, o.Entity);
+
+                    if (o.State == EntityState.Deleted)
+                        o.State = EntityState.Detached;
+                    else
+                        o.State = EntityState.Unchanged;
+                
             }
 
             return objectsWritten;
