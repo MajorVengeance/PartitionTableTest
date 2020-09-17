@@ -52,7 +52,7 @@ namespace PartitionTableTest.Data
                     // Add the table
                     this.memberTables.Add(newTable);
 
-                    //Recreate View (I hope)
+                    //Recreate View (I hope) (fairly sure this does fuck all)
                     CreateView();
                 }
 
